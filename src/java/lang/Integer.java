@@ -31,11 +31,13 @@ import java.lang.annotation.Native;
  * The {@code Integer} class wraps a value of the primitive type
  * {@code int} in an object. An object of type {@code Integer}
  * contains a single field whose type is {@code int}.
+ * Integer类包裹一个基本类型int的值在一个对象中。Integer对象包含一个int类型的域。
  *
  * <p>In addition, this class provides several methods for converting
  * an {@code int} to a {@code String} and a {@code String} to an
  * {@code int}, as well as other constants and methods useful when
  * dealing with an {@code int}.
+ * 此外,这个类提供了很多方法用于转换int到String和转换String到int,此外提供了其他一些常量和有用的方法当处理int时。
  *
  * <p>Implementation note: The implementations of the "bit twiddling"
  * methods (such as {@link #highestOneBit(int) highestOneBit} and
@@ -43,6 +45,8 @@ import java.lang.annotation.Native;
  * based on material from Henry S. Warren, Jr.'s <i>Hacker's
  * Delight</i>, (Addison Wesley, 2002).
  *
+ * 实现说明:对于"位旋转"等方法(像最高一位比特和末尾零的数量)的实现都基于Henry S. Warren, Jr.'s Hacker's的材料。
+ * Delight
  * @author  Lee Boynton
  * @author  Arthur van Hoff
  * @author  Josh Bloch
@@ -53,19 +57,21 @@ public final class Integer extends Number implements Comparable<Integer> {
     /**
      * A constant holding the minimum value an {@code int} can
      * have, -2<sup>31</sup>.
+     * 一个持有int最小值(- 2^31)的常量
      */
     @Native public static final int   MIN_VALUE = 0x80000000;
 
     /**
      * A constant holding the maximum value an {@code int} can
      * have, 2<sup>31</sup>-1.
+     * 一个持有int最大值(2^31 - 1)的常量
      */
     @Native public static final int   MAX_VALUE = 0x7fffffff;
 
     /**
      * The {@code Class} instance representing the primitive type
      * {@code int}.
-     *
+     * {@code Class}实例代表基本类型{@code int}
      * @since   JDK1.1
      */
     @SuppressWarnings("unchecked")
@@ -73,6 +79,7 @@ public final class Integer extends Number implements Comparable<Integer> {
 
     /**
      * All possible chars for representing a number as a String
+     * 用字符串来表示数字的所有可能用到的字符
      */
     final static char[] digits = {
         '0' , '1' , '2' , '3' , '4' , '5' ,
@@ -86,15 +93,18 @@ public final class Integer extends Number implements Comparable<Integer> {
     /**
      * Returns a string representation of the first argument in the
      * radix specified by the second argument.
+     * 返回第一个参数的进制表示,进制由第二个参数的字符串指定
      *
      * <p>If the radix is smaller than {@code Character.MIN_RADIX}
      * or larger than {@code Character.MAX_RADIX}, then the radix
      * {@code 10} is used instead.
+     * 如果进制数小于{@code Character.MIN_RADIX}或者大于{@code Character.MAX_RADIX},那么使用10来代替进制数
      *
      * <p>If the first argument is negative, the first element of the
      * result is the ASCII minus character {@code '-'}
      * ({@code '\u005Cu002D'}). If the first argument is not
      * negative, no sign character appears in the result.
+     * 如果第一个参数是负数,那结果的第一元素是减号。如果第一个参数不是负数,没有符号字符出现在结果中。
      *
      * <p>The remaining characters of the result represent the magnitude
      * of the first argument. If the magnitude is zero, it is
@@ -102,6 +112,7 @@ public final class Integer extends Number implements Comparable<Integer> {
      * ({@code '\u005Cu0030'}); otherwise, the first character of
      * the representation of the magnitude will not be the zero
      * character.  The following ASCII characters are used as digits:
+     * 结果的剩余字符代表第一个参数的大小。如果大小是0,将用一个0字符来代表;否则,第一个字符将不会是0。下面接着的ASCII字符是可以用于表示数字
      *
      * <blockquote>
      *   {@code 0123456789abcdefghijklmnopqrstuvwxyz}
@@ -122,8 +133,11 @@ public final class Integer extends Number implements Comparable<Integer> {
      * </blockquote>
      *
      * @param   i       an integer to be converted to a string.
+     *                  一个将要转换为String的Integer
      * @param   radix   the radix to use in the string representation.
+     *                  在String中用于表示进制
      * @return  a string representation of the argument in the specified radix.
+     *                   表达特定进制的参数
      * @see     java.lang.Character#MAX_RADIX
      * @see     java.lang.Character#MIN_RADIX
      */
@@ -140,7 +154,7 @@ public final class Integer extends Number implements Comparable<Integer> {
         boolean negative = (i < 0);
         int charPos = 32;
 
-        if (!negative) {
+        if (!negative) {//如果i是正数,先变为负数
             i = -i;
         }
 
