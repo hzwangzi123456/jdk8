@@ -173,19 +173,26 @@ public final class String
      * argument specifies the length of the subarray. The contents of the
      * subarray are copied; subsequent modification of the character array does
      * not affect the newly created string.
+     * 以字符数组的子数组来分配一个新的String对象,{@code offset}参数是子数组第一个字符的索引,
+     * {@code count}代表子数组的长度。子数组的内容被拷贝;后期对于字符数组的改变不会影响新创建的String对象。
      *
      * @param  value
      *         Array that is the source of characters
+     *         字符数组
      *
      * @param  offset
      *         The initial offset
+     *         偏移量
      *
      * @param  count
      *         The length
+     *         字符长度
      *
      * @throws  IndexOutOfBoundsException
      *          If the {@code offset} and {@code count} arguments index
      *          characters outside the bounds of the {@code value} array
+     *          如果{@code offset}和{@code count}参数索引超过字符数组的边界,
+     *          会throw IndexOutOfBoundsException错误
      */
     public String(char value[], int offset, int count) {
         if (offset < 0) {

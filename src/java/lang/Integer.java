@@ -175,18 +175,23 @@ public final class Integer extends Number implements Comparable<Integer> {
      * Returns a string representation of the first argument as an
      * unsigned integer value in the radix specified by the second
      * argument.
+     * 返回第一个参数的radix进制的无符号integer的String表示
      *
      * <p>If the radix is smaller than {@code Character.MIN_RADIX}
      * or larger than {@code Character.MAX_RADIX}, then the radix
      * {@code 10} is used instead.
+     * 如果radix小于{@code Character.MIN_RADIX}或者大于{@code Character.MAX_RADIX},那么radix
+     * 使用10来代替
      *
      * <p>Note that since the first argument is treated as an unsigned
      * value, no leading sign character is printed.
+     * 注意因为第一个参数被对待成无符号值,所以没有前置符号字符被打印
      *
      * <p>If the magnitude is zero, it is represented by a single zero
      * character {@code '0'} ({@code '\u005Cu0030'}); otherwise,
      * the first character of the representation of the magnitude will
      * not be the zero character.
+     * 如果大小是0的话,它用一个0字符来表示,否则,用来表示大小的第一个字符将不会是0字符
      *
      * <p>The behavior of radixes and the characters used as digits
      * are the same as {@link #toString(int, int) toString}.
