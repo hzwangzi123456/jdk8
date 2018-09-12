@@ -46,19 +46,27 @@ import java.util.concurrent.locks.LockSupport;
  * the computation has completed, the computation cannot be restarted
  * or cancelled (unless the computation is invoked using
  * {@link #runAndReset}).
+ * 一个可取消的同步计算。这个类提供了一个对于Future接口的基本的实现,实现了开始和取消
+ * 一个计算,查询计算是否完成和检索计算结果。这个结果只有当计算完成时才能被检索;如果计
+ * 算还没有完成,get方法将阻塞。当计算已经完成了,计算即不能被取消也不能被重启(除非计算
+ * 被调用通过runAndReset)
  *
  * <p>A {@code FutureTask} can be used to wrap a {@link Callable} or
  * {@link Runnable} object.  Because {@code FutureTask} implements
  * {@code Runnable}, a {@code FutureTask} can be submitted to an
  * {@link Executor} for execution.
+ * 一个FutureTask对象可以被用来包装一个Callable或者Runnable对象。因为FutureTask
+ * 实现了Runnable接口,一个FutureTask对象可以被提交给一个Executor,用于执行。
  *
  * <p>In addition to serving as a standalone class, this class provides
  * {@code protected} functionality that may be useful when creating
  * customized task classes.
+ * 此外,作为一个单独的类,当创建定制task类时,这个类可以提供有用的功能。
  *
  * @since 1.5
  * @author Doug Lea
  * @param <V> The result type returned by this FutureTask's {@code get} methods
+ *            通过FutureTask的get方法返回的结果的类型
  */
 public class FutureTask<V> implements RunnableFuture<V> {
     /*
@@ -388,10 +396,16 @@ public class FutureTask<V> implements RunnableFuture<V> {
 
     /**
      * Awaits completion or aborts on interrupt or timeout.
+     * 等待完成或者因为中断或者超时引起的中止
      *
      * @param timed true if use timed waits
+     *        如果使用定时等待,timed的值为true
+     *
      * @param nanos time to wait, if timed
+     *        如果规定了定时等待,nanos为需要等待的时间
+     *
      * @return state upon completion
+     *         完成后的状态
      */
     private int awaitDone(boolean timed, long nanos)
         throws InterruptedException {
